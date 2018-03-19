@@ -9,7 +9,7 @@ export function openFirebaseDashboardApp() {
         databaseURL: dashboardDatabaseUrl,
         credential: firebaseAdmin.credential.cert({
             project_id: 'mosaic-board',
-            client_email: '',
+            client_email: 'firebase-adminsdk-pkg66@mosaic-board.iam.gserviceaccount.com',
             private_key: decode(process.env['MOSAIC_BOARD_FIREBASE_SERVICE_KEY']!)
         })
     });
