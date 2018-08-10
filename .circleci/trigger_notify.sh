@@ -23,3 +23,4 @@ curl \
 --header "Content-Type: application/json" \
 --data "${post_data}" \
 --request POST https://chat.ptsecurity.com/hooks/rak3tz7fziybzr97buxw6xhzuy
+
