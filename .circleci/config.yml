@@ -20,7 +20,7 @@ jobs:
       - run: npm install --no-save
       - run:
           name: Trigger Notify
-          command: ./circleci/trigger_notify.sh
+          command: ./.circleci/trigger_notify.sh
       - save_cache:
           <<: *package_lock_key
           paths:
