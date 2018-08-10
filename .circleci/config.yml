@@ -18,6 +18,7 @@ jobs:
       - checkout: *post_checkout
       - restore_cache: *package_lock_key
       - run: npm install --no-save
+      - run: curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "😱 Hello, this is some text from CircleCI\nThis is more text. :tada:"}' https://chat.ptsecurity.com/hooks/rak3tz7fziybzr97buxw6xhzuy
       - save_cache:
           <<: *package_lock_key
           paths:
@@ -118,8 +119,3 @@ workflows:
               branches:
                 only:
                   - master
-
-notify:
-  webhooks:
-    - url: https://chat.ptsecurity.com/hooks/rak3tz7fziybzr97buxw6xhzuy
-
