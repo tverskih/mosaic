@@ -1,3 +1,4 @@
+/* tslint:disable */
 import * as path from 'path';
 import {sync as globSync} from 'glob';
 
@@ -10,7 +11,7 @@ import {FilterDuplicateExports} from './processors/filter-duplicate-exports';
 import {MergeInheritedProperties} from './processors/merge-inherited-properties';
 import {DocsPrivateFilter} from './processors/docs-private-filter';
 import {Categorizer} from './processors/categorizer';
-import {ComponentGrouper} from './processors/component-grouper';
+//import {ComponentGrouper} from './processors/component-grouper';
 
 
 const jsdocPackage = require('dgeni-packages/jsdoc');
@@ -69,7 +70,7 @@ apiDocsPackage.processor(new DocsPrivateFilter());
 apiDocsPackage.processor(new Categorizer());
 
 // Processor to group components into top-level groups such as "Tabs", "Sidenav", etc.
-apiDocsPackage.processor(new ComponentGrouper());
+//apiDocsPackage.processor(new ComponentGrouper());
 
 // Configure the log level of the API docs dgeni package.
 apiDocsPackage.config((log: any) => log.level = 'info');

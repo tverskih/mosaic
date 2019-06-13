@@ -22,10 +22,13 @@
                 "../../../dist/packages/mosaic/*"
             ],
             "@ptsecurity/mosaic-moment-adapter/*": [
-                "../../../dist/mosaic-moment-adapter/*"
+                "../../../dist/packages/mosaic-moment-adapter/*"
+            ],
+            "@ptsecurity/mosaic-examples/*": [
+                "../../../dist/packages/mosaic-examples/*"
             ],
             "@ptsecurity/mosaic-examples": [
-                "../../mosaic-examples/*"
+                "../../../dist/packages/mosaic-examples/public-api.ts"
             ]
         }
     },

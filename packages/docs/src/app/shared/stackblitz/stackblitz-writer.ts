@@ -1,17 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ExampleData } from '@angular/material-examples';
+import { ExampleData } from '@ptsecurity/mosaic-examples';
 import { VERSION } from '@ptsecurity/mosaic/core';
 
-import { materialVersion } from '../version/version';
+import { mosaicVersion } from '../version/version';
 
 
 const STACKBLITZ_URL = 'https://run.stackblitz.com/api/angular/v1';
 
 const COPYRIGHT =
-    `Copyright 2019 Google Inc. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license`;
+    `Copyright 2019 Positive Technologies. MIT-style license.`;
 
 /**
  * Path that refers to the docs-content from the "@angular/material-examples" package. The
@@ -27,16 +25,16 @@ const TEMPLATE_FILES = [
     'polyfills.ts',
     '.angular-cli.json',
     'main.ts',
-    'material-module.ts'
+    'mosaic-module.ts'
 ];
 
-const TAGS: string[] = ['angular', 'material', 'example'];
-const angularVersion = '>=7.0.0';
+const TAGS: string[] = ['angular', 'mosaic', 'example'];
+const angularVersion = '>=8.0.0';
 
 const dependencies = {
-    '@ptsecurity/cdk': materialVersion,
-    '@ptsecurity/mosaic': materialVersion,
-    '@ptsecurity/mosaic-moment-adapter': materialVersion,
+    '@ptsecurity/cdk': mosaicVersion,
+    '@ptsecurity/mosaic': mosaicVersion,
+    '@ptsecurity/mosaic-moment-adapter': mosaicVersion,
     '@angular/animations': angularVersion,
     '@angular/common': angularVersion,
     '@angular/compiler': angularVersion,
@@ -186,7 +184,7 @@ export class StackblitzWriter {
             // For example, <material-docs-example></material-docs-example> will be replaced as
             // <button-demo></button-demo>
             // tslint:disable:no-parameter-reassignment
-            fileContent = fileContent.replace(/material-docs-example/g, data.selectorName);
+            fileContent = fileContent.replace(/mosaic-docs-example/g, data.selectorName);
             fileContent = fileContent.replace(/{{version}}/g, VERSION.full);
         } else if (fileName === 'main.ts') {
             // Replace the component name in `main.ts`.
@@ -196,12 +194,12 @@ export class StackblitzWriter {
 
             // Replace `declarations: [MaterialDocsExample]`
             // will be replaced as `declarations: [ButtonDemo]`
-            fileContent = fileContent.replace(/declarations: \[MaterialDocsExample\]/g,
+            fileContent = fileContent.replace(/declarations: \[MosaicDocsExample\]/g,
                 `declarations: [${data.componentName}]`);
 
             // Replace `entryComponents: [MaterialDocsExample]`
             // will be replaced as `entryComponents: [DialogContent]`
-            fileContent = fileContent.replace(/entryComponents: \[MaterialDocsExample\]/g,
+            fileContent = fileContent.replace(/entryComponents: \[MosaicDocsExample\]/g,
                 `entryComponents: [${data.componentName}]`);
 
             // Replace `bootstrap: [MaterialDocsExample]`
@@ -211,7 +209,7 @@ export class StackblitzWriter {
             fileContent = fileContent.replace(/bootstrap: \[MaterialDocsExample\]/g,
                 `bootstrap: [${componentList}]`);
 
-            fileContent = fileContent.replace(/material-docs-example/g, data.indexFilename);
+            fileContent = fileContent.replace(/mosaic-docs-example/g, data.indexFilename);
         }
 
         return fileContent;

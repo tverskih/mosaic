@@ -30,7 +30,7 @@ export const EXAMPLE_LIST = ${exampleList};
     declarations: EXAMPLE_LIST,
     entryComponents: EXAMPLE_LIST,
     imports: [
-        ExampleMaterialModule,
+        ExampleMosaicModule,
         FormsModule,
         ReactiveFormsModule,
         CommonModule
