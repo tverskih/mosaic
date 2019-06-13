@@ -12,13 +12,13 @@
                         "aot": true,
                         "sourceMap": false,
                         "outputPath": "dist",
-                        "index": "packages/docs/index.html",
-                        "main": "packages/docs/main.ts",
-                        "tsConfig": "packages/docs/tsconfig.json",
+                        "index": "packages/docs/src/index.html",
+                        "main": "packages/docs/src/main.ts",
+                        "tsConfig": "packages/docs/src/tsconfig.json",
                         "assets": [
                             {
                                 "glob": "**/*",
-                                "input": "packages/docs/assets",
+                                "input": "packages/docs/src/assets",
                                 "output": "/assets"
                             },
                             {
@@ -34,7 +34,7 @@
                         ],
                         "styles": [
                             {
-                                "input": "packages/docs/main.scss"
+                                "input": "packages/docs/src/main.scss"
                             }
                         ],
                         "scripts": []
@@ -52,8 +52,8 @@
                             "buildOptimizer": true,
                             "fileReplacements": [
                                 {
-                                    "src": "src/environments/environment.ts",
-                                    "replaceWith": "src/environments/environment.prod.ts"
+                                    "src": "packages/docs/src/environments/environment.ts",
+                                    "replaceWith": "packages/docs/src/environments/environment.prod.ts"
                                 }
                             ]
                         }
@@ -74,7 +74,7 @@
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
                         "tsConfig": [
-                            "packages/docs/tsconfig.json"
+                            "packages/docs/src/tsconfig.json"
                         ],
                         "exclude": [
                             "**/node_modules/**"

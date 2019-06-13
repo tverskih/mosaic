@@ -16,13 +16,16 @@
         "baseUrl": ".",
         "paths": {
             "@ptsecurity/cdk/*": [
-                "../../dist/packages/cdk/*"
+                "../../../dist/packages/cdk/*"
             ],
             "@ptsecurity/mosaic/*": [
-                "../../dist/packages/mosaic/*"
+                "../../../dist/packages/mosaic/*"
             ],
             "@ptsecurity/mosaic-moment-adapter/*": [
-                "../mosaic-moment-adapter/*"
+                "../../../dist/mosaic-moment-adapter/*"
+            ],
+            "@ptsecurity/mosaic-examples": [
+                "../../mosaic-examples/*"
             ]
         }
     },

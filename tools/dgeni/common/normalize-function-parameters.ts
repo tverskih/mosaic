@@ -1,15 +1,27 @@
-import { MethodMemberDoc } from 'dgeni-packages/typescript/api-doc-types/MethodMemberDoc';
+import { ApiDoc } from 'dgeni-packages/typescript/api-doc-types/ApiDoc';
+import {
+    ParameterContainer,
+    ParamTag
+} from 'dgeni-packages/typescript/api-doc-types/ParameterContainer';
 
 
-export class NormalizedMethodMemberDoc extends MethodMemberDoc {
-    params?: MethodParameterInfo[];
+// tslint:disable-next-line:naming-convention
+export interface NormalizedFunctionParameters {
+    params?: FunctionParameterInfo[];
 }
 
-export interface MethodParameterInfo {
-    name: string;
+// tslint:disable-next-line:naming-convention
+export interface FunctionParameterInfo extends ParamTag {
+    // tslint:disable-next-line:no-reserved-keywords
     type: string;
     isOptional: boolean;
 }
+
+/**
+ * Generic type that represents Dgeni method members and standalone functions. Also it the type
+ * combines the normalized function document so that we can update the doc with type checking.
+ */
+export type DefaultFunctionDoc = NormalizedFunctionParameters & ParameterContainer & ApiDoc;
 
 /**
  * The `parameters` property are the parameters extracted from TypeScript and are strings
@@ -21,9 +33,10 @@ export interface MethodParameterInfo {
  * We will use the `params` property to store the final normalized form since it is already
  * an object.
  */
-export function normalizeMethodParameters(method: NormalizedMethodMemberDoc) {
-    if (method.parameters) {
-        method.parameters.forEach((parameter) => {
+export function normalizeFunctionParameters(doc: DefaultFunctionDoc) {
+    if (doc.parameters) {
+        doc.parameters.forEach((parameter) => {
+            // tslint:disable-next-line:prefer-const
             let [parameterName, parameterType] = parameter.split(':');
 
             // If the parameter is optional, the name here will contain a '?'. We store whether the
@@ -34,24 +47,23 @@ export function normalizeMethodParameters(method: NormalizedMethodMemberDoc) {
                 parameterName = parameterName.replace('?', '');
             }
 
-            if (!method.params) {
-                method.params = [];
-            }
+            doc.params = doc.params || [];
 
             if (!parameterType) {
                 console.warn(`Missing parameter type information (${parameterName}) in ` +
-                    `${method.fileInfo.relativePath}:${method.startingLine}`);
+                    `${doc.fileInfo.relativePath}:${doc.startingLine}`);
 
                 return;
             }
 
-            const existingParameterInfo = method.params.find((p) => p.name === parameterName);
+            const existingParameterInfo = doc.params.find((p) => p.name === parameterName);
 
             if (!existingParameterInfo) {
-                method.params.push({
+                doc.params.push({
                     name: parameterName,
                     type: parameterType.trim(),
-                    isOptional
+                    isOptional,
+                    description: ''
                 });
             } else {
                 existingParameterInfo.type = parameterType.trim();
