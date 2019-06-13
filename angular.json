@@ -23,12 +23,12 @@
                             },
                             {
                                 "glob": "**/*",
-                                "input": "./node_modules/@angular/mosaic-examples/docs-content",
+                                "input": "./node_modules/@ptsecurity/mosaic-examples/docs-content",
                                 "output": "/docs-content"
                             },
                             {
                                 "glob": "favicon.ico",
-                                "input": "src",
+                                "input": "packages/docs/src",
                                 "output": "/"
                             }
                         ],

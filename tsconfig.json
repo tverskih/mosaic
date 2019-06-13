@@ -6,7 +6,6 @@
         "moduleResolution": "node",
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "skipLibCheck": true,
@@ -16,19 +15,16 @@
             "es2015",
             "dom"
         ],
-        "baseUrl": ".",
+        "baseUrl": "./packages",
         "paths": {
             "@ptsecurity/cdk/*": [
-                "./packages/cdk/*"
+                "./cdk/*"
             ],
             "@ptsecurity/mosaic/*": [
-                "./packages/mosaic/*"
+                "./mosaic/*"
             ],
             "@ptsecurity/mosaic-moment-adapter/*": [
-                "./packages/mosaic-moment-adapter/*"
-            ],
-            "@ptsecurity/mosaic-examples": [
-                "./packages/mosaic-examples/*"
+                "./mosaic-moment-adapter/*"
             ]
         },
         "typeRoots": [

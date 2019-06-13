@@ -8,9 +8,7 @@ import { RouterModule } from '@angular/router';
 
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { MainLayoutModule } from './components/main-layout/main-layout.module';
-
 import { CompComponent, CompModule, HomepageComponent, HomepageModule } from './containers';
-
 import { DocsComponent } from './docs.component';
 
 
