@@ -8,7 +8,15 @@ import { RouterModule } from '@angular/router';
 
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { MainLayoutModule } from './components/main-layout/main-layout.module';
-import { CompComponent, CompModule, HomepageComponent, HomepageModule } from './containers';
+import { ComponentListModule, ComponentListComponent, HomepageComponent, HomepageModule } from './containers';
+import { ComponentCategoryList } from './containers/component-category-list/component-category-list.component';
+import { ComponentCategoryListModule } from './containers/component-category-list/component-category-list.module';
+import {
+    ComponentApiComponent,
+    ComponentOverviewComponent,
+    ComponentViewerComponent
+} from './containers/component-viwer/component-viewer.component';
+import { ComponentViewerModule } from './containers/component-viwer/component-viewer.module';
 import { DocsComponent } from './docs.component';
 
 
@@ -22,20 +30,40 @@ import { DocsComponent } from './docs.component';
         RouterModule.forRoot([
             { path: '', component: HomepageComponent, pathMatch: 'full' },
             {
-                path: 'docs',
+                path: ':section',
                 component: MainLayoutComponent,
                 children: [
-                    {path: '', redirectTo: 'components', pathMatch: 'full'},
+                    {path: '', redirectTo: 'categories', pathMatch: 'full'},
+                    {path: 'component/:id', redirectTo: ':id', pathMatch: 'full'},
+                    {path: 'category/:id', redirectTo: '/categories/:id', pathMatch: 'full'},
 
-                    {   path: 'components', component: CompComponent }
+                    {
+                        path: 'categories',
+                        children: [
+                            {path: '', component: ComponentCategoryList},
+                            {path: ':id', component: ComponentListComponent}
+                        ]
+                    },
 
+                    {
+                        path: ':id',
+                        component: ComponentViewerComponent,
+                        children: [
+                            {path: '', redirectTo: 'overview', pathMatch: 'full'},
+                            {path: 'overview', component: ComponentOverviewComponent, pathMatch: 'full'},
+                            {path: 'api', component: ComponentApiComponent, pathMatch: 'full'},
+                            {path: '**', redirectTo: 'overview'}
+                        ]
+                    }
                 ]
             },
             {path: '**', redirectTo: ''}
         ]),
 
         HomepageModule,
-        CompModule,
+        ComponentListModule,
+        ComponentViewerModule,
+        ComponentCategoryListModule,
         MainLayoutModule
     ],
     declarations: [DocsComponent],

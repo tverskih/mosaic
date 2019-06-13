@@ -1,3 +1,3 @@
-export * from './components/comp.component';
-export * from './components/comp.module';
+export * from './component-list/component-list.component';
+export * from './component-list/component-list.module';
 export * from './homepage';
