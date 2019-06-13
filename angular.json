@@ -23,7 +23,7 @@
                             },
                             {
                                 "glob": "**/*",
-                                "input": "./node_modules/@ptsecurity/mosaic-examples/docs-content",
+                                "input": "./dist/docs-content",
                                 "output": "/docs-content"
                             },
                             {

@@ -1,0 +1,19 @@
+<div class="docs-example-viewer-wrapper">
+  <div class="docs-example-viewer-title">
+    <div class="docs-example-viewer-title-spacer">{{exampleData?.title}}</div>
+
+    <button type="button" (click)="toggleSourceView()">
+            SourceView button
+    </button>
+
+
+</div>
+
+  <div class="docs-example-viewer-source" *ngIf="showSource">
+
+  </div>
+
+  <div class="docs-example-viewer-body">
+    <ng-template [cdkPortalOutlet]="selectedPortal"></ng-template>
+  </div>
+</div>
