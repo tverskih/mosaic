@@ -2,20 +2,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ExampleData } from '@ptsecurity/mosaic-examples';
-import { VERSION } from '@ptsecurity/mosaic/version';
 
-//import { mosaicVersion } from '../version/version';
+import { mosaicVersion } from '../version/version';
 
 
 const STACKBLITZ_URL = 'https://run.stackblitz.com/api/angular/v1';
 
 const COPYRIGHT =
-    `Copyright 2019 Google Inc. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license`;
+    `Copyright 2019 Positive Technologies. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license.`;
 
 /**
- * Path that refers to the docs-content from the "@angular/mosaic-examples" package. The
+ * Path that refers to the docs-content from the "@ptsecurity/mosaic-examples" package. The
  * structure is defined in the repository, but we include the docs-content as assets in
  * in the CLI configuration.
  */
@@ -33,11 +31,8 @@ const TEMPLATE_FILES = [
 
 const TAGS: string[] = ['angular', 'mosaic', 'example'];
 const angularVersion = '>=8.0.0';
-const mosaicVersion = '>=8.0.0-beta.1';
 
-console.log('======Version======');
 console.log(mosaicVersion);
-
 
 const dependencies = {
     '@ptsecurity/cdk': mosaicVersion,
@@ -90,23 +85,23 @@ export class StackblitzWriter {
      */
     constructStackblitzForm(data: ExampleData): Promise<HTMLFormElement> {
         const indexFile = `app%2F${data.indexFilename}.ts`;
-        const form = this._createFormElement(indexFile);
+        const form = this.createFormElement(indexFile);
 
-        TAGS.forEach((tag, i) => this._appendFormInput(form, `tags[${i}]`, tag));
-        this._appendFormInput(form, 'private', 'true');
-        this._appendFormInput(form, 'description', data.description);
-        this._appendFormInput(form, 'dependencies', JSON.stringify(dependencies));
+        TAGS.forEach((tag, i) => this.appendFormInput(form, `tags[${i}]`, tag));
+        this.appendFormInput(form, 'private', 'true');
+        this.appendFormInput(form, 'description', data.description);
+        this.appendFormInput(form, 'dependencies', JSON.stringify(dependencies));
 
         return new Promise((resolve) => {
             const templateContents = TEMPLATE_FILES
-                .map((file) => this._readFile(form, data, file, TEMPLATE_PATH));
+                .map((file) => this.readFile(form, data, file, TEMPLATE_PATH));
 
             const exampleContents = data.exampleFiles
-                .map((file) => this._readFile(form, data, file, DOCS_CONTENT_PATH));
+                .map((file) => this.readFile(form, data, file, DOCS_CONTENT_PATH));
 
-            // TODO(josephperrott): Prevent including assets to be manually checked.
+            // TODO: Prevent including assets to be manually checked.
             if (data.selectorName === 'icon-svg-example') {
-                this._readFile(form, data, 'assets/img/examples/thumbup-icon.svg', '', false);
+                this.readFile(form, data, 'assets/img/examples/thumbup-icon.svg', '', false);
             }
 
             Promise.all(templateContents.concat(exampleContents)).then(() => {
@@ -116,7 +111,7 @@ export class StackblitzWriter {
     }
 
     /** Constructs a new form element that will navigate to the stackblitz url. */
-    _createFormElement(indexFile: string): HTMLFormElement {
+    createFormElement(indexFile: string): HTMLFormElement {
         const form = document.createElement('form');
         form.action = `${STACKBLITZ_URL}?file=${indexFile}`;
         form.method = 'post';
@@ -126,7 +121,7 @@ export class StackblitzWriter {
     }
 
     /** Appends the name and value as an input to the form. */
-    _appendFormInput(form: HTMLFormElement, name: string, value: string): void {
+    appendFormInput(form: HTMLFormElement, name: string, value: string): void {
         const input = document.createElement('input');
         input.type = 'hidden';
         input.name = name;
@@ -142,13 +137,13 @@ export class StackblitzWriter {
      * @param path path to the src
      * @param prependApp whether to prepend the 'app' prefix to the path
      */
-    _readFile(form: HTMLFormElement,
-              data: ExampleData,
-              filename: string,
-              path: string,
-              prependApp = true): void {
+    readFile(form: HTMLFormElement,
+             data: ExampleData,
+             filename: string,
+             path: string,
+             prependApp = true): void {
         this._http.get(path + filename, {responseType: 'text'}).subscribe(
-            (response) => this._addFileToForm(form, data, response, filename, path, prependApp),
+            (response) => this.addFileToForm(form, data, response, filename, path, prependApp),
             // tslint:disable-next-line:no-console
             (error) => console.log(error)
         );
@@ -163,18 +158,19 @@ export class StackblitzWriter {
      * @param path path to the src
      * @param prependApp whether to prepend the 'app' prefix to the path
      */
-    _addFileToForm(form: HTMLFormElement,
-                   data: ExampleData,
-                   content: string,
-                   filename: string,
-                   path: string,
-                   prependApp = true) {
+    addFileToForm(form: HTMLFormElement,
+                  data: ExampleData,
+                  content: string,
+                  filename: string,
+                  path: string,
+                  prependApp = true) {
         if (path === TEMPLATE_PATH) {
-            content = this._replaceExamplePlaceholderNames(data, filename, content);
+            content = this.replaceExamplePlaceholderNames(data, filename, content);
         } else if (prependApp) {
+            // tslint:disable-next-line:prefer-template
             filename = 'app/' + filename;
         }
-        this._appendFormInput(form, `files[${filename}]`, this._appendCopyright(filename, content));
+        this.appendFormInput(form, `files[${filename}]`, this.appendCopyright(filename, content));
     }
 
     /**
@@ -183,16 +179,15 @@ export class StackblitzWriter {
      * This will replace those placeholders with the names from the example metadata,
      * e.g. "<basic-button-example>" and "BasicButtonExample"
      */
-    _replaceExamplePlaceholderNames(data: ExampleData,
-                                    fileName: string,
-                                    fileContent: string): string {
+    replaceExamplePlaceholderNames(data: ExampleData,
+                                   fileName: string,
+                                   fileContent: string): string {
         if (fileName === 'index.html') {
             // Replace the component selector in `index,html`.
             // For example, <mosaic-docs-example></mosaic-docs-example> will be replaced as
             // <button-demo></button-demo>
-            // tslint:disable-next-line:no-parameter-reassignment
             fileContent = fileContent.replace(/mosaic-docs-example/g, data.selectorName);
-            fileContent = fileContent.replace(/{{version}}/g, VERSION.full);
+            fileContent = fileContent.replace(/{{version}}/g, mosaicVersion);
         } else if (fileName === 'main.ts') {
             // Replace the component name in `main.ts`.
             // Replace `import {MosaicDocsExample} from 'mosaic-docs-example'`
@@ -222,7 +217,7 @@ export class StackblitzWriter {
         return fileContent;
     }
 
-    _appendCopyright(filename: string, content: string) {
+    appendCopyright(filename: string, content: string) {
         if (filename.indexOf('.ts') > -1 || filename.indexOf('.scss') > -1) {
             content = `${content}\n\n/**  ${COPYRIGHT} */`;
         } else if (filename.indexOf('.html') > -1) {
