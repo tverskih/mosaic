@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { ExampleModule } from '@ptsecurity/mosaic-examples';
 
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { MainLayoutModule } from './components/main-layout/main-layout.module';
@@ -18,6 +19,7 @@ import {
 } from './containers/component-viwer/component-viewer.component';
 import { ComponentViewerModule } from './containers/component-viwer/component-viewer.module';
 import { DocsComponent } from './docs.component';
+import { DocumentationItems } from './shared/documentation-items/documentation-items';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import { DocsComponent } from './docs.component';
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
+        ExampleModule,
 
         RouterModule.forRoot([
             { path: '', component: HomepageComponent, pathMatch: 'full' },
@@ -68,7 +71,7 @@ import { DocsComponent } from './docs.component';
     ],
     declarations: [DocsComponent],
     providers: [
-
+        DocumentationItems,
         {
             provide: LocationStrategy,
             useClass: PathLocationStrategy

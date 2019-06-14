@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
  */
 @Component({
     selector: 'button-basic-example',
-    templateUrl: 'button-basic-example.html',
-    styleUrls: ['button-basic-example.css']
+    templateUrl: 'button-overview-example.html',
+    styleUrls: ['button-overview-example.css']
 })
-export class ButtonBasicExample {
+export class ButtonOverviewExample {
 }

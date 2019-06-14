@@ -145,7 +145,6 @@ task('copy-stackblitz-examples', () => {
 });
 
 task('docs', series(
-    'clean',
         'markdown-docs-mosaic',
         'build-highlighted-examples',
         'build-examples-module',

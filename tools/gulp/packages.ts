@@ -17,3 +17,10 @@ mosaicPackage.sourceDir = join(buildConfig.packagesDir, 'mosaic');
 
 cdkPackage.copySecondaryEntryPointStylesToRoot = true;
 cdkPackage.hasSchematics = true;
+
+export const allBuildPackages = [
+    cdkPackage,
+    momentAdapterPackage,
+    mosaicPackage,
+    examplesPackage
+];

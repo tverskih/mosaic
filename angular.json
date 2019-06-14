@@ -14,7 +14,7 @@
                         "outputPath": "dist",
                         "index": "packages/docs/src/index.html",
                         "main": "packages/docs/src/main.ts",
-                        "tsConfig": "packages/docs/src/tsconfig.json",
+                        "tsConfig": "packages/docs/tsconfig.json",
                         "assets": [
                             {
                                 "glob": "**/*",
@@ -74,7 +74,7 @@
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
                         "tsConfig": [
-                            "packages/docs/src/tsconfig.json"
+                            "packages/docs/tsconfig.json"
                         ],
                         "exclude": [
                             "**/node_modules/**"

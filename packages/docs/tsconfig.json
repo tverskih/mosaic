@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "declaration": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "lib": [
+            "es2017",
+            "dom"
+        ],
+
+        "module": "es2015",
+        "moduleResolution": "node",
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "baseUrl": ".",
+        "paths": {
+            "@ptsecurity/cdk/*": ["../../dist/packages/cdk/*"],
+            "@ptsecurity/cdk": ["../../dist/packages/cdk"],
+
+            "@ptsecurity/mosaic/*": ["../../dist/packages/mosaic/*"],
+
+            "@ptsecurity/mosaic-moment-adapter/*": ["../../dist/packages/mosaic-moment-adapter/*"],
+            "@ptsecurity/mosaic-moment-adapter": ["../../dist/packages/mosaic-moment-adapter"],
+
+            "@ptsecurity/mosaic-examples/*": ["../../dist/releases/mosaic-examples/*"],
+            "@ptsecurity/mosaic-examples": ["../../dist/packages/mosaic-examples"]
+        }
+    },
+    "exclude": [
+        "assets"
+    ],
+    "include": ["./**/*.ts"]
+}
