@@ -16,8 +16,8 @@ import {
     ComponentApiComponent,
     ComponentOverviewComponent,
     ComponentViewerComponent
-} from './containers/component-viwer/component-viewer.component';
-import { ComponentViewerModule } from './containers/component-viwer/component-viewer.module';
+} from './containers/component-viewer/component-viewer.component';
+import { ComponentViewerModule } from './containers/component-viewer/component-viewer.module';
 import { DocsComponent } from './docs.component';
 import { DocumentationItems } from './shared/documentation-items/documentation-items';
 

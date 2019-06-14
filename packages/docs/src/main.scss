@@ -4,6 +4,8 @@
 
 @import './app-theme';
 @import './styles/common';
+@import './styles/markdown';
+@import './styles/mosaic-fixed';
 
 
 $primary: mc-palette($mc-blue, 400, 500, 600);

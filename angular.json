@@ -35,6 +35,9 @@
                         "styles": [
                             {
                                 "input": "packages/docs/src/main.scss"
+                            },
+                            {
+                                "input": "packages/docs/src/highlightjs/material-light.scss"
                             }
                         ],
                         "scripts": []
