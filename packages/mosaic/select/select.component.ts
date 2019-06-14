@@ -175,7 +175,6 @@ export class McSelectSearch implements AfterContentInit, OnDestroy {
     }
 }
 
-
 @Directive({ selector: 'mc-select-trigger' })
 export class McSelectTrigger {}
 
@@ -1020,7 +1019,7 @@ export class McSelect extends McSelectMixinBase implements
         ].find((option: McOption) => {
             try {
                 // Treat null as a special reset value.
-                return option.value != null && this._compareWith(option.value, value);
+                return option.value != null && this.compareWith(option.value, value);
             } catch (error) {
                 if (isDevMode()) {
                     // Notify developers of errors in their comparator.
