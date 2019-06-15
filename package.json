@@ -146,6 +146,7 @@
         "changelog": "gulp changelog",
         "ng": "ng",
         "docs:start": "ng serve",
+        "docs:prod-build": "ng build --aot --prod",
         "postinstall": "ngc -p angular.tsconfig.json",
         "preinstall": "node ./tools/npm/check-npm.js",
         "publish": "ts-node --project ./scripts/tsconfig.deploy.json ./scripts/deploy/publish-artifacts.ts",

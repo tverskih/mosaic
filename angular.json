@@ -11,7 +11,7 @@
                     "options": {
                         "aot": true,
                         "sourceMap": false,
-                        "outputPath": "dist",
+                        "outputPath": "dist/mosaic-io",
                         "index": "packages/docs/src/index.html",
                         "main": "packages/docs/src/main.ts",
                         "tsConfig": "packages/docs/tsconfig.json",
