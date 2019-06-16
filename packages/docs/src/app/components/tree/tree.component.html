@@ -1,0 +1,14 @@
+<mc-tree-selection
+    [dataSource]="dataSource$"
+    >
+
+    <mc-tree-option *mcTreeNodeDef="let node" mcTreeNodePadding>
+        {{ node.name }}
+    </mc-tree-option>
+
+    <mc-tree-option *mcTreeNodeDef="let node; when: hasChild" mcTreeNodePadding>
+        <i mc-icon="mc-angle-down-S_16" [style.transform]="treeControl.isExpanded(node) ? '' : 'rotate(-90deg)'" cdkTreeNodeToggle></i>
+        {{ node.name }} : {{ node.type }}
+    </mc-tree-option>
+</mc-tree-selection>
+

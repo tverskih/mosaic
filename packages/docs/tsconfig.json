@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
         "declaration": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
@@ -12,26 +13,83 @@
         "moduleResolution": "node",
         "outDir": "./dist/out-tsc",
         "sourceMap": true,
+        "skipLibCheck": true,
         "resolveJsonModule": true,
         "esModuleInterop": true,
         "importHelpers": true,
-        "target": "es2015",
+        "target": "es5",
         "baseUrl": ".",
+        "stripInternal": false,
+        "typeRoots": [
+            "../../node_modules/@types"
+        ],
         "paths": {
             "@ptsecurity/cdk/*": ["../../dist/packages/cdk/*"],
-            "@ptsecurity/cdk": ["../../dist/packages/cdk"],
 
             "@ptsecurity/mosaic/*": ["../../dist/packages/mosaic/*"],
 
             "@ptsecurity/mosaic-moment-adapter/*": ["../../dist/packages/mosaic-moment-adapter/*"],
-            "@ptsecurity/mosaic-moment-adapter": ["../../dist/packages/mosaic-moment-adapter"],
+//            "@ptsecurity/mosaic-moment-adapter": ["../../dist/packages/mosaic-moment-adapter"],
 
-            "@ptsecurity/mosaic-examples/*": ["../../dist/releases/mosaic-examples/*"],
+            "@ptsecurity/mosaic-examples/*": ["../../dist/packages/mosaic-examples/*"],
             "@ptsecurity/mosaic-examples": ["../../dist/packages/mosaic-examples"]
+//
+//
+//            "@ptsecurity/cdk": ["../../dist/release/cdk"],
+//            "@ptsecurity/cdk/a11y": ["../../dist/release/cdk/a11y"],
+//            "@ptsecurity/cdk/bidi": ["../../dist/release/cdk/bidi"],
+//            "@ptsecurity/cdk/datetime": ["../../dist/release/cdk/datetime"],
+//            "@ptsecurity/cdk/coercion": ["../../dist/release/cdk/coercion"],
+//            "@ptsecurity/cdk/collections": ["../../dist/release/cdk/collections"],
+//            "@ptsecurity/cdk/keycodes": ["../../dist/release/cdk/keycodes"],
+//            "@ptsecurity/cdk/layout": ["../../dist/release/cdk/layout"],
+//            "@ptsecurity/cdk/overlay": ["../../dist/release/cdk/overlay"],
+//            "@ptsecurity/cdk/platform": ["../../dist/release/cdk/platform"],
+//            "@ptsecurity/cdk/portal": ["../../dist/release/cdk/portal"],
+//            "@ptsecurity/cdk/scrolling": ["../../dist/release/cdk/scrolling"],
+//            "@ptsecurity/cdk/testing": ["../../dist/release/cdk/testing"],
+//            "@ptsecurity/cdk/tree": ["../../dist/release/cdk/tree"],
+//
+//            "@ptsecurity/mosaic-moment-adapter": ["../../dist/release/mosaic-moment-adapter"],
+//            "@ptsecurity/mosaic-moment-adapter/adapter": ["../../dist/release/mosaic-moment-adapter/adapter"],
+//
+//            "@ptsecurity/mosaic": ["../../dist/release/mosaic"],
+//
+//            "@ptsecurity/mosaic/autocomplete": ["../../dist/release/mosaic/autocomplete"],
+//            "@ptsecurity/mosaic/button": ["../../dist/release/mosaic/button"],
+//            "@ptsecurity/mosaic/button-toggle": ["../../dist/release/mosaic/button-toggle"],
+//            "@ptsecurity/mosaic/core": ["../../dist/release/mosaic/core"],
+//            "@ptsecurity/mosaic/card": ["../../dist/release/mosaic/card"],
+//            "@ptsecurity/mosaic/datepicker": ["../../dist/release/mosaic/datepicker"],
+//            "@ptsecurity/mosaic/divider": ["../../dist/release/mosaic/divider"],
+//            "@ptsecurity/mosaic/dropdown": ["../../dist/release/mosaic/dropdown"],
+//            "@ptsecurity/mosaic/list": ["../../dist/release/mosaic/list"],
+//            "@ptsecurity/mosaic/navbar": ["../../dist/release/mosaic/navbar"],
+//            "@ptsecurity/mosaic/progress-bar": ["../../dist/release/mosaic/progress-bar"],
+//            "@ptsecurity/mosaic/progress-spinner": ["../../dist/release/mosaic/progress-spinner"],
+//            "@ptsecurity/mosaic/icon": ["../../dist/release/mosaic/icon"],
+//            "@ptsecurity/mosaic/layout": ["../../dist/release/mosaic/layout"],
+//            "@ptsecurity/mosaic/link": ["../../dist/release/mosaic/link"],
+//            "@ptsecurity/mosaic/radio": ["../../dist/release/mosaic/radio"],
+//            "@ptsecurity/mosaic/checkbox": ["../../dist/release/mosaic/checkbox"],
+//            "@ptsecurity/mosaic/input": ["../../dist/release/mosaic/input"],
+//            "@ptsecurity/mosaic/form-field": ["../../dist/release/mosaic/form-field"],
+//            "@ptsecurity/mosaic/tree": ["../../dist/release/mosaic/tree"],
+//            "@ptsecurity/mosaic/modal": ["../../dist/release/mosaic/modal"],
+//            "@ptsecurity/mosaic/tags": ["../../dist/release/mosaic/tags"],
+//            "@ptsecurity/mosaic/tabs": ["../../dist/release/mosaic/tabs"],
+//            "@ptsecurity/mosaic/select": ["../../dist/release/mosaic/select"],
+//            "@ptsecurity/mosaic/sidepanel": ["../../dist/release/mosaic/sidepanel"],
+//            "@ptsecurity/mosaic/textarea": ["../../dist/release/mosaic/textarea"],
+//            "@ptsecurity/mosaic/toggle": ["../../dist/release/mosaic/toggle"],
+//            "@ptsecurity/mosaic/tooltip": ["../../dist/release/mosaic/tooltip"],
+//            "@ptsecurity/mosaic/timepicker": ["../../dist/release/mosaic/timepicker"],
+//            "@ptsecurity/mosaic/tree-select": ["../../dist/release/mosaic/tree-select"],
+//            "@ptsecurity/mosaic/splitter": ["../../dist/release/mosaic/splitter"],
+//            "@ptsecurity/mosaic/vertical-navbar": ["../../dist/release/mosaic/vertical-navbar"]
         }
     },
     "exclude": [
         "src/assets"
-    ],
-    "include": ["./**/*.ts"]
+    ]
 }
