@@ -107,7 +107,7 @@ export class FileDatabase {
 }
 
 @Component({
-    selector: 'tree-storie-component',
+    selector: 'tree-component',
     templateUrl: './tree.component.html',
     providers: [FileDatabase]
 })
@@ -117,7 +117,6 @@ export class TreeComponent {
     treeFlattener: McTreeFlattener<FileNode, FileFlatNode>;
 
     constructor(database: FileDatabase) {
-        console.log('dfdsf');
         this.treeFlattener = new McTreeFlattener(
             this.transformer, this._getLevel, this._isExpandable, this._getChildren
         );

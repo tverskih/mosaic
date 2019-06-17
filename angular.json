@@ -1,20 +1,28 @@
 {
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "mosaic-io": {
-            "root": "",
+        "mosaic-docs": {
             "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "packages/docs",
+            "sourceRoot": "packages/docs/src",
+            "prefix": "app",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "aot": true,
-                        "sourceMap": false,
-                        "outputPath": "dist/mosaic-io",
+                        "outputPath": "../../dist/mosaic-docs",
                         "index": "packages/docs/src/index.html",
                         "main": "packages/docs/src/main.ts",
-                        "tsConfig": "packages/docs/tsconfig.json",
+                        "polyfills": "packages/docs/src/polyfills.ts",
+                        "tsConfig": "packages/docs/tsconfig.app.json",
+                        "aot": false,
                         "assets": [
                             {
                                 "glob": "**/*",
@@ -23,7 +31,7 @@
                             },
                             {
                                 "glob": "**/*",
-                                "input": "./dist/docs-content",
+                                "input": "../../dist/docs-content",
                                 "output": "/docs-content"
                             },
                             {
@@ -39,11 +47,18 @@
                             {
                                 "input": "packages/docs/src/highlightjs/material-light.scss"
                             }
+
                         ],
                         "scripts": []
                     },
                     "configurations": {
                         "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "packages/docs/src/environments/environment.ts",
+                                    "with": "packages/docs/src/environments/environment.prod.ts"
+                                }
+                            ],
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
@@ -53,10 +68,11 @@
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
-                            "fileReplacements": [
+                            "budgets": [
                                 {
-                                    "src": "packages/docs/src/environments/environment.ts",
-                                    "replaceWith": "packages/docs/src/environments/environment.prod.ts"
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
                                 }
                             ]
                         }
@@ -65,26 +81,16 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "mosaic-io:build"
+                        "browserTarget": "mosaic-docs:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "mosaic-io:build:production"
+                            "browserTarget": "mosaic-docs:build:production"
                         }
-                    }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": [
-                            "packages/docs/tsconfig.json"
-                        ],
-                        "exclude": [
-                            "**/node_modules/**"
-                        ]
                     }
                 }
             }
         }
-    }
+    },
+    "defaultProject": "mosaic-docs"
 }
