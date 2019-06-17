@@ -113,7 +113,7 @@ export class FileDatabase {
 })
 export class TreeComponent {
     treeControl: FlatTreeControl<FileFlatNode>;
-    dataSource$: McTreeFlatDataSource<FileNode, FileFlatNode>;
+    dataSource: McTreeFlatDataSource<FileNode, FileFlatNode>;
     treeFlattener: McTreeFlattener<FileNode, FileFlatNode>;
 
     constructor(database: FileDatabase) {
@@ -123,10 +123,10 @@ export class TreeComponent {
         );
 
         this.treeControl = new FlatTreeControl<FileFlatNode>(this._getLevel, this._isExpandable);
-        this.dataSource$ = new McTreeFlatDataSource(this.treeControl, this.treeFlattener);
+        this.dataSource = new McTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
         database.dataChange.subscribe((data) => {
-            this.dataSource$.data = data;
+            this.dataSource.data = data;
         });
     }
 

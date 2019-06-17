@@ -45,15 +45,15 @@ export class McTreeSelectionChange {
     constructor(public source: McTreeSelection, public option: McTreeOption) {}
 }
 
-class McTreeSelectionBase<T> extends CdkTree<T> {
-    constructor(differs: IterableDiffers, changeDetectorRef: ChangeDetectorRef) {
-        super(differs, changeDetectorRef);
-    }
-}
-
-/* tslint:disable-next-line:naming-convention */
-const McTreeSelectionBaseMixin: HasTabIndexCtor & CanDisableCtor &
-    typeof McTreeSelectionBase = mixinTabIndex(mixinDisabled(McTreeSelectionBase));
+// class McTreeSelectionBase<T> extends CdkTree<T> {
+//     constructor(differs: IterableDiffers, changeDetectorRef: ChangeDetectorRef) {
+//         super(differs, changeDetectorRef);
+//     }
+// }
+//
+// /* tslint:disable-next-line:naming-convention */
+// const McTreeSelectionBaseMixin: HasTabIndexCtor & CanDisableCtor &
+//     typeof McTreeSelectionBase = mixinTabIndex(mixinDisabled(McTreeSelectionBase));
 
 
 @Component({
@@ -76,7 +76,7 @@ const McTreeSelectionBaseMixin: HasTabIndexCtor & CanDisableCtor &
         { provide: CdkTree, useExisting: McTreeSelection }
     ]
 })
-export class McTreeSelection extends McTreeSelectionBaseMixin<McTreeOption>
+export class McTreeSelection extends CdkTree<McTreeOption>
     implements AfterContentInit, CanDisable, HasTabIndex {
 
     @ViewChild(CdkTreeNodeOutlet, {static: true}) nodeOutlet: CdkTreeNodeOutlet;

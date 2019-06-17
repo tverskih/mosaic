@@ -1,8 +1,18 @@
 
 ## Development Setup
-1. build:mosaic-examples - generate dynamic examples (for Stackblitz)
-2. build:mosaic - generate our components for Docs App 
-3. build:docs - generate `docs-content` folder
+1. generate dynamic examples (for Stackblitz)
+```bash
+yarn run build:mosaic-examples
+```
+
+2. generate components for Docs App
+```bash
+yarn run build:mosaic
+``` 
+3. generate `docs-content` folder
+```bash
+yarn run build:docs
+```
 
 
 ## Development Server
