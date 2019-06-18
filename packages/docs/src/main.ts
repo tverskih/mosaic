@@ -9,7 +9,7 @@ import './polyfills.ts';
 
 // tslint:disable-next-line:blank-lines
 if (environment.production) {
-  enableProdMode();
+    enableProdMode();
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule);

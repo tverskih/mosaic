@@ -37,8 +37,9 @@ export class ExampleViewer {
             this._example = exampleName;
             this.exampleData = EXAMPLE_COMPONENTS[exampleName];
             this.selectedPortal = new ComponentPortal(this.exampleData.component);
-            this._generateExampleTabs();
+            this.generateExampleTabs();
         } else {
+            // tslint:disable-next-line:no-console
             console.error(`Could not find example: ${exampleName}`);
         }
     }
@@ -52,10 +53,7 @@ export class ExampleViewer {
         this.showSource = !this.showSource;
     }
 
-    copySource(text: string) {
-    }
-
-    _getExampleTabNames() {
+    getExampleTabNames() {
         return Object.keys(this.exampleTabs);
     }
 
@@ -63,7 +61,7 @@ export class ExampleViewer {
         return `/docs-content/examples-highlighted/${fileName}`;
     }
 
-    private _generateExampleTabs() {
+    private generateExampleTabs() {
         this.exampleTabs = {
             HTML: this.resolveHighlightedExampleFile(`${this.example}-example-html.html`),
             TS: this.resolveHighlightedExampleFile(`${this.example}-example-ts.html`),

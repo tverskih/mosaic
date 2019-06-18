@@ -30,15 +30,15 @@ export class DocViewer implements OnDestroy {
     /** The URL of the document to display. */
     @Input()
     set documentUrl(url: string) {
-        this._fetchDocument(url);
+        this.fetchDocument(url);
     }
 
     @Output() contentRendered = new EventEmitter<void>();
 
     /** The document text. It should not be HTML encoded. */
     textContent = '';
-    private _portalHosts: DomPortalHost[] = [];
-    private _documentFetchSubscription: Subscription;
+    private portalHosts: DomPortalHost[] = [];
+    private documentFetchSubscription: Subscription;
 
     constructor(private _appRef: ApplicationRef,
                 private _componentFactoryResolver: ComponentFactoryResolver,
@@ -51,21 +51,21 @@ export class DocViewer implements OnDestroy {
     }
 
     ngOnDestroy() {
-        this._clearLiveExamples();
+        this.clearLiveExamples();
 
-        if (this._documentFetchSubscription) {
-            this._documentFetchSubscription.unsubscribe();
+        if (this.documentFetchSubscription) {
+            this.documentFetchSubscription.unsubscribe();
         }
     }
 
     /** Fetch a document by URL. */
-    private _fetchDocument(url: string) {
+    private fetchDocument(url: string) {
         // Cancel previous pending request
-        if (this._documentFetchSubscription) {
-            this._documentFetchSubscription.unsubscribe();
+        if (this.documentFetchSubscription) {
+            this.documentFetchSubscription.unsubscribe();
         }
 
-        this._documentFetchSubscription = this._http.get(url, {responseType: 'text'}).subscribe(
+        this.documentFetchSubscription = this._http.get(url, {responseType: 'text'}).subscribe(
             (document) => this.updateDocument(document),
             (error) => this.showError(url, error)
         );
@@ -79,6 +79,7 @@ export class DocViewer implements OnDestroy {
         // Replace all relative fragment URLs with absolute fragment URLs. e.g. "#my-section" becomes
         // "/components/button/api#my-section". This is necessary because otherwise these fragment
         // links would redirect to "/#my-section".
+        // tslint:disable-next-line:no-parameter-reassignment
         rawDocument = rawDocument.replace(/href="#([^"]*)"/g, (_m: string, fragmentUrl: string) => {
             const absoluteUrl = `${location.pathname}#${fragmentUrl}`;
 
@@ -89,7 +90,7 @@ export class DocViewer implements OnDestroy {
         this._elementRef.nativeElement.innerHTML = rawDocument;
         this.textContent = this._elementRef.nativeElement.textContent;
 
-        this._loadComponents('mosaic-docs-example', ExampleViewer);
+        this.loadComponents('mosaic-docs-example', ExampleViewer);
 
         // Resolving and creating components dynamically in Angular happens synchronously, but since
         // we want to emit the output if the components are actually rendered completely, we wait
@@ -101,13 +102,14 @@ export class DocViewer implements OnDestroy {
 
     /** Show an error that occurred when fetching a document. */
     private showError(url: string, error: HttpErrorResponse) {
-        console.log(error);
+        // tslint:disable-next-line:no-console
+        console.error(error);
         this._elementRef.nativeElement.innerText =
             `Failed to load document: ${url}. Error: ${error.statusText}`;
     }
 
     /** Instantiate a ExampleViewer for each example. */
-    private _loadComponents(componentName: string, componentClass: any) {
+    private loadComponents(componentName: string, componentClass: any) {
         const exampleElements =
             this._elementRef.nativeElement.querySelectorAll(`[${componentName}]`);
 
@@ -119,12 +121,12 @@ export class DocViewer implements OnDestroy {
             const exampleViewer = portalHost.attach(examplePortal);
             (exampleViewer.instance as ExampleViewer).example = example;
 
-            this._portalHosts.push(portalHost);
+            this.portalHosts.push(portalHost);
         });
     }
 
-    private _clearLiveExamples() {
-        this._portalHosts.forEach((h) => h.dispose());
-        this._portalHosts = [];
+    private clearLiveExamples() {
+        this.portalHosts.forEach((h) => h.dispose());
+        this.portalHosts = [];
     }
 }

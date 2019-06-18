@@ -1,9 +1,9 @@
 /* tslint:disable:no-var-requires */
-const _package = require('../../../../../../package.json');
+const packageJSON = require('../../../../../../package.json');
 
 
 /** This material version will be used in footer and stackblitz. */
-export const mosaicVersion = _package.version;
+export const mosaicVersion = packageJSON.version;
 
 /** Version information with title and redirect url */
 // tslint:disable-next-line:naming-convention

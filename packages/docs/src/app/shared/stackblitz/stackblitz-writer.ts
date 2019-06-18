@@ -32,8 +32,6 @@ const TEMPLATE_FILES = [
 const TAGS: string[] = ['angular', 'mosaic', 'example'];
 const angularVersion = '>=8.0.0';
 
-console.log(mosaicVersion);
-
 const dependencies = {
     '@ptsecurity/cdk': mosaicVersion,
     '@ptsecurity/mosaic': mosaicVersion,

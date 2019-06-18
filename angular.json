@@ -88,6 +88,36 @@
                             "browserTarget": "mosaic-docs:build:production"
                         }
                     }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "packages/docs/src/test.ts",
+                        "polyfills": "packages/docs/src/polyfills.ts",
+                        "tsConfig": "packages/docs/tsconfig.spec.json",
+                        "karmaConfig": "packages/docs/karma.conf.js",
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "packages/docs/src/assets",
+                                "output": "/assets"
+                            },
+                            {
+                                "glob": "favicon.ico",
+                                "input": "packages/docs/src",
+                                "output": "/"
+                            }
+                        ],
+                        "styles": [
+                            {
+                                "input": "packages/docs/src/main.scss"
+                            },
+                            {
+                                "input": "packages/docs/src/highlightjs/material-light.scss"
+                            }
+                        ],
+                        "scripts": []
+                    }
                 }
             }
         }
