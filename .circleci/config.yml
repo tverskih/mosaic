@@ -65,6 +65,8 @@ jobs:
         <<: *job_defaults
         steps:
             - attach_workspace: *attach_options
+            - run: yarn run build:docs
+            - run: yarn run build:mosaic-examples
             - run: yarn run docs:prod-build
             - persist_to_workspace:
                   root: dist
@@ -167,9 +169,12 @@ workflows:
             - build_mosaic:
                   requires:
                       - install
+
             - build_mosaic_docs:
                   requires:
-                      - install
+                      - build_cdk
+                      - build_mosaic
+                      - build_mosaic-moment-adapter
             # 3 Group
             - test_unit:
                   requires:
