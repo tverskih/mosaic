@@ -17,7 +17,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "../../dist/mosaic-docs",
+                        "outputPath": "./dist/releases/mosaic-docs",
                         "index": "packages/docs/src/index.html",
                         "main": "packages/docs/src/main.ts",
                         "polyfills": "packages/docs/src/polyfills.ts",

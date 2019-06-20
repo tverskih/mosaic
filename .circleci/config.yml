@@ -61,6 +61,16 @@ jobs:
             - attach_workspace: *attach_options
             - run: yarn run valid:lic
 
+    build_mosaic_docs:
+        <<: *job_defaults
+        steps:
+            - attach_workspace: *attach_options
+            - run: yarn run build:mosaic
+            - persist_to_workspace:
+                  root: dist
+                  paths:
+                      - *release_path
+
     build_mosaic:
         <<: *job_defaults
         steps:
@@ -125,7 +135,7 @@ jobs:
                       - "c3:de:eb:9c:82:70:a8:23:f3:4e:92:b8:07:d2:22:df"
             - run: ./scripts/deploy/publish-artifacts.sh
 
-    docs_publish:
+    preview_mosaic_docs:
         <<: *job_defaults
         steps:
             - add_ssh_keys:
@@ -133,7 +143,9 @@ jobs:
                       - "c3:de:eb:9c:82:70:a8:23:f3:4e:92:b8:07:d2:22:df"
             - *checkout_code
             - *restore_cache
-            - run: ./scripts/deploy/publish-docs.sh
+            - *attach_release_output
+            - run: yarn run build:docs
+            - run: yarn run docs:publish-preview
 
 
 workflows:
@@ -153,6 +165,9 @@ workflows:
                   requires:
                       - install
             - build_mosaic:
+                  requires:
+                      - install
+            - build_mosaic_docs:
                   requires:
                       - install
             # 3 Group
@@ -177,11 +192,7 @@ workflows:
                       branches:
                           only:
                               - master
-            - docs_publish:
+            - preview_mosaic_docs:
                   requires:
+                      - build_mosaic_docs
                       - test_unit
-                      - build_mosaic
-                  filters:
-                      branches:
-                          only:
-                              - master
