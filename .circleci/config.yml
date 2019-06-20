@@ -74,7 +74,7 @@ jobs:
                       source $BASH_ENV
             - run: yarn run build:docs
             - run: yarn run build:mosaic-examples
-            - run: yarn run docs:prod-build --progress false --base-href /pr$CIRCLE_PULL_REQUEST_NUMBER-$SHORT_GIT_HASH/ --output-path dist/releases/mosaic-docs/pr$CIRCLE_PULL_REQUEST_NUMBER-$SHORT_GIT_HASH/
+            - run: yarn run docs:prod-build --progress false --base-href /mosaic-previews/pr$CIRCLE_PULL_REQUEST_NUMBER-$SHORT_GIT_HASH/ --output-path dist/releases/mosaic-docs/pr$CIRCLE_PULL_REQUEST_NUMBER-$SHORT_GIT_HASH/
             - persist_to_workspace:
                   root: dist
                   paths:
