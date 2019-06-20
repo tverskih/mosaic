@@ -65,7 +65,7 @@ jobs:
         <<: *job_defaults
         steps:
             - attach_workspace: *attach_options
-            - run: yarn run build:mosaic
+            - run: yarn run docs:prod-build
             - persist_to_workspace:
                   root: dist
                   paths:
